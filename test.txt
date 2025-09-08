@@ -1,0 +1,91 @@
+Got it—you want to take **user input in VS Code using Go (Golang)**.
+
+Here’s a simple way using **fmt.Scanln** or **bufio** depending on the need:
+
+---
+
+### 1. Using `fmt.Scanln` (Basic Input)
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var name string
+	fmt.Print("Enter your name: ")
+	fmt.Scanln(&name) // takes input until the first space or newline
+	fmt.Println("Hello,", name)
+}
+```
+
+**How it works:**
+
+* `fmt.Scanln(&name)` reads user input and stores it in the variable `name`.
+* The `&` symbol passes the memory address of `name` so the value can be stored there.
+
+---
+
+### 2. Using `bufio` (For Full Line Input)
+
+If you want to read **full sentences** including spaces:
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter your full name: ")
+	name, _ := reader.ReadString('\n')
+	fmt.Println("Hello,", name)
+}
+```
+
+**Why use this:**
+
+* `ReadString('\n')` reads input until the user presses **Enter**, capturing everything including spaces.
+
+---
+
+### 3. Taking Integer Input
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var age int
+	fmt.Print("Enter your age: ")
+	fmt.Scanln(&age)
+	fmt.Println("You are", age, "years old")
+}
+```
+
+---
+
+### How to Run in VS Code:
+
+1. Open the terminal in VS Code.
+2. Navigate to your Go file directory.
+3. Run:
+
+   ```bash
+   go run filename.go
+   ```
+4. Enter input when prompted.
+
+---
+
+If you want, I can give you a **single program** that takes **multiple inputs (string, int)** in one go.
+Do you want me to make that for you?
