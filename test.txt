@@ -1,91 +1,52 @@
-Got it—you want to take **user input in VS Code using Go (Golang)**.
+SQL> CREATE DATABASE test;
+Database created: test
 
-Here’s a simple way using **fmt.Scanln** or **bufio** depending on the need:
+SQL> USE test;
+Using database: test
 
----
+SQL> CREATE TABLE users id,name,age;
+Table created: users
 
-### 1. Using `fmt.Scanln` (Basic Input)
+SQL> INSERT INTO users id=1 name=Alice age=25;
+Inserted into users
 
-```go
-package main
+SQL> INSERT INTO users id=2 name=Bob age=30;
+Inserted into users
 
-import (
-	"fmt"
-)
+SQL> SELECT * FROM users;
++----+-------+-----+
+| id | name  | age |
++----+-------+-----+
+| 1  | Alice | 25  |
+| 2  | Bob   | 30  |
++----+-------+-----+
 
-func main() {
-	var name string
-	fmt.Print("Enter your name: ")
-	fmt.Scanln(&name) // takes input until the first space or newline
-	fmt.Println("Hello,", name)
-}
-```
+SQL> DELETE FROM users WHERE id=1;
+Deleted 1 row(s) from users
 
-**How it works:**
+SQL> SELECT * FROM users;
++----+-----+-----+
+| id | name| age |
++----+-----+-----+
+| 2  | Bob | 30  |
++----+-----+-----+
 
-* `fmt.Scanln(&name)` reads user input and stores it in the variable `name`.
-* The `&` symbol passes the memory address of `name` so the value can be stored there.
+SQL> EXIT;
+Bye 👋
 
----
 
-### 2. Using `bufio` (For Full Line Input)
+----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+SQL> USE test;
+Using database: test
 
-If you want to read **full sentences** including spaces:
+SQL> SHOW TABLES;
+Tables in test:
+ - users
 
-```go
-package main
+SQL> DROP TABLE users;
+Dropped table: users
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-)
-
-func main() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter your full name: ")
-	name, _ := reader.ReadString('\n')
-	fmt.Println("Hello,", name)
-}
-```
-
-**Why use this:**
-
-* `ReadString('\n')` reads input until the user presses **Enter**, capturing everything including spaces.
-
----
-
-### 3. Taking Integer Input
-
-```go
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	var age int
-	fmt.Print("Enter your age: ")
-	fmt.Scanln(&age)
-	fmt.Println("You are", age, "years old")
-}
-```
-
----
-
-### How to Run in VS Code:
-
-1. Open the terminal in VS Code.
-2. Navigate to your Go file directory.
-3. Run:
-
-   ```bash
-   go run filename.go
-   ```
-4. Enter input when prompted.
-
----
-
-If you want, I can give you a **single program** that takes **multiple inputs (string, int)** in one go.
-Do you want me to make that for you?
+SQL> SHOW TABLES;
+(no tables left)

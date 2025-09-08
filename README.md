@@ -1,2 +1,1 @@
-"# SIMPLE_GO_PROJECT" 
-"# SIMPLE_GO_PROJECT" 
+"# Simple GO Database" 
