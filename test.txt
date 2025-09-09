@@ -50,3 +50,114 @@ Dropped table: users
 
 SQL> SHOW TABLES;
 (no tables left)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+https://zod-url.vercel.app/nEWPb
+
+Got it 👍 You’ve already built a **mini SQL-like DB engine in Go** with support for `CREATE`, `USE`, `SHOW`, `INSERT`, `SELECT`, `DELETE`, `DROP`. That’s a huge start!
+
+Now if your goal is to **create your own DB system**, you’ll need a structured roadmap that takes you from this JSON-backed toy DB → toward more advanced database concepts.
+
+Here’s a **roadmap for building your own DB in Go**:
+
+---
+
+## 🛠 Phase 1: Core Foundations (You’re Here)
+
+* ✅ Basic CLI loop for commands
+* ✅ Databases & tables with JSON storage
+* ✅ Support for SQL-like commands (`CREATE`, `SHOW`, `USE`, `INSERT`, `SELECT`, `DELETE`, `DROP`)
+* ✅ Pretty table rendering
+
+👉 Next in this phase:
+
+* Add **UPDATE command** (`UPDATE table SET col=val WHERE col=val`)
+* Add **constraints** (e.g., PRIMARY KEY, NOT NULL)
+* Add **type enforcement** (int, string, bool)
+
+---
+
+## 📂 Phase 2: Storage Layer
+
+Currently, your DB is **JSON flat file**. Improve persistence & efficiency:
+
+* Replace JSON with **binary format** or a simple **B-Tree file structure**.
+* Implement **page-based storage** (like SQLite → stores in fixed-size pages).
+* Add **indexes**:
+
+  * Primary index (B-Tree for fast lookup by key).
+  * Secondary index (for `WHERE col=val`).
+
+---
+
+## ⚡ Phase 3: Query Engine
+
+Build the query executor:
+
+* ✅ Simple `SELECT * FROM table`
+* ➡️ Add filtering: `SELECT * FROM table WHERE col=val`
+* ➡️ Add projections: `SELECT col1,col2 FROM table`
+* ➡️ Add conditions with `AND`, `OR`
+* ➡️ Add basic joins
+
+---
+
+## 🔒 Phase 4: Transactions & Concurrency
+
+* Implement a **WAL (Write Ahead Log)** for crash recovery.
+* Add **transactions**: `BEGIN`, `COMMIT`, `ROLLBACK`.
+* Add **concurrency control**:
+
+  * Pessimistic (locks)
+  * Optimistic (MVCC like PostgreSQL)
+
+---
+
+## 🌐 Phase 5: Advanced SQL Features
+
+* Aggregations (`COUNT`, `SUM`, `AVG`)
+* Grouping (`GROUP BY`, `HAVING`)
+* Ordering (`ORDER BY`)
+* Limit/Offset (`LIMIT 10 OFFSET 20`)
+
+---
+
+## 🚀 Phase 6: Production-Ready Features
+
+* Add **users & permissions** (`GRANT`, `REVOKE`).
+* Add **indexes** (B-Tree, Hash index).
+* Add **foreign keys** (referential integrity).
+* Build a **network layer** (TCP server) → So clients can connect like MySQL/Postgres.
+* Implement a **wire protocol** (your custom, or PostgreSQL-compatible).
+
+---
+
+## 🧑‍💻 Suggested Milestones
+
+1. **MiniDB v1 (what you have now)** – JSON storage, CLI, CRUD.
+2. **MiniDB v2** – Binary storage + indexes + filtering queries.
+3. **MiniDB v3** – Transactions + concurrency + crash recovery.
+4. **MiniDB v4** – Network server + client support.
+5. **MiniDB v5** – Advanced SQL & production-level engine.
+
+---
+
+⚡ **Learning resources while building this**:
+
+* 📘 *Database Internals* – Alex Petrov
+* 📘 *Designing Data-Intensive Applications* – Martin Kleppmann
+* SQLite source code (a goldmine for learning storage/query engine design).
+
+---
+
+👉 Question for you:
+Do you want me to **extend your current code step by step** (next: `UPDATE`, `WHERE` in `SELECT`, type checking) — or do you want a **high-level roadmap only**?
